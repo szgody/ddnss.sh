@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="719" height="169">
+   <defs>
+      <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332200; stroke-width: 1;}
+    .bold-line            {stroke: #140E00; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1400; shape-rendering: crispEdges}
+    .filled               {fill: #332200; stroke: none;}
+    text.terminal         {font-family: Daniel Black, Sans-serif;
+                            font-size: 10.5px;
+                            fill: #140E00;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Daniel Black, Sans-serif;
+                            font-size: 10.5px;
+                            fill: #1A1100;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Daniel Black, Sans-serif;
+                            font-size: 10.5px;
+                            fill: #1F1400;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332200; stroke: #332200;}
+    rect.terminal         {fill: #FFC34D; stroke: #332200; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFDF9E; stroke: #332200; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFECC7; stroke: #332200; stroke-width: 1;}
+  </style>
+   </defs>
+   <polygon points="9 17 1 13 1 21"/>
+   <polygon points="17 17 9 13 9 21"/>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+      xlink:href="#handle_record"
+      xlink:title="handle_record">
+      <rect x="51" y="3" width="112" height="32"/>
+      <rect x="49" y="1" width="112" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="59" y="21">handle_record</text>
+   </a>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+      xlink:href="#api_req"
+      xlink:title="api_req">
+      <rect x="203" y="3" width="68" height="32"/>
+      <rect x="201" y="1" width="68" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="211" y="21">api_req</text>
+   </a>
+   <rect x="311" y="3" width="112" height="32" rx="10"/>
+   <rect x="309"
+         y="1"
+         width="112"
+         height="32"
+         class="terminal"
+         rx="10"/>
+   <text class="terminal" x="319" y="21">Create record</text>
+   <rect x="311" y="47" width="116" height="32" rx="10"/>
+   <rect x="309"
+         y="45"
+         width="116"
+         height="32"
+         class="terminal"
+         rx="10"/>
+   <text class="terminal" x="319" y="65">Update record</text>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+      xlink:href="#api_err"
+      xlink:title="api_err">
+      <rect x="467" y="3" width="66" height="32"/>
+      <rect x="465" y="1" width="66" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="475" y="21">api_err</text>
+   </a>
+   <rect x="203" y="91" width="158" height="32" rx="10"/>
+   <rect x="201"
+         y="89"
+         width="158"
+         height="32"
+         class="terminal"
+         rx="10"/>
+   <text class="terminal" x="211" y="109">Record is up-to-date</text>
+   <rect x="573" y="3" width="98" height="32" rx="10"/>
+   <rect x="571"
+         y="1"
+         width="98"
+         height="32"
+         class="terminal"
+         rx="10"/>
+   <text class="terminal" x="581" y="21">Next record</text>
+   <rect x="51" y="135" width="132" height="32" rx="10"/>
+   <rect x="49"
+         y="133"
+         width="132"
+         height="32"
+         class="terminal"
+         rx="10"/>
+   <text class="terminal" x="59" y="153">No more records</text>
+   <path class="line"
+         d="m17 17 h2 m20 0 h10 m112 0 h10 m20 0 h10 m68 0 h10 m20 0 h10 m112 0 h10 m0 0 h4 m-156 0 h20 m136 0 h20 m-176 0 q10 0 10 10 m156 0 q0 -10 10 -10 m-166 10 v24 m156 0 v-24 m-156 24 q0 10 10 10 m136 0 q10 0 10 -10 m-146 10 h10 m116 0 h10 m20 -44 h10 m66 0 h10 m-370 0 h20 m350 0 h20 m-390 0 q10 0 10 10 m370 0 q0 -10 10 -10 m-380 10 v68 m370 0 v-68 m-370 68 q0 10 10 10 m350 0 q10 0 10 -10 m-360 10 h10 m158 0 h10 m0 0 h172 m20 -88 h10 m98 0 h10 m-660 0 h20 m640 0 h20 m-680 0 q10 0 10 10 m660 0 q0 -10 10 -10 m-670 10 v112 m660 0 v-112 m-660 112 q0 10 10 10 m640 0 q10 0 10 -10 m-650 10 h10 m132 0 h10 m0 0 h488 m23 -132 h-3"/>
+   <polygon points="709 17 717 13 717 21"/>
+   <polygon points="709 17 701 13 701 21"/>
+</svg>

@@ -1,0 +1,59 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg xmlns="http://www.w3.org/2000/svg" width="421" height="71">
+   <defs>
+      <style type="text/css">
+    @namespace "http://www.w3.org/2000/svg";
+    .line                 {fill: none; stroke: #332200; stroke-width: 1;}
+    .bold-line            {stroke: #140E00; shape-rendering: crispEdges; stroke-width: 2;}
+    .thin-line            {stroke: #1F1400; shape-rendering: crispEdges}
+    .filled               {fill: #332200; stroke: none;}
+    text.terminal         {font-family: Daniel Black, Sans-serif;
+                            font-size: 10.5px;
+                            fill: #140E00;
+                            font-weight: bold;
+                          }
+    text.nonterminal      {font-family: Daniel Black, Sans-serif;
+                            font-size: 10.5px;
+                            fill: #1A1100;
+                            font-weight: normal;
+                          }
+    text.regexp           {font-family: Daniel Black, Sans-serif;
+                            font-size: 10.5px;
+                            fill: #1F1400;
+                            font-weight: normal;
+                          }
+    rect, circle, polygon {fill: #332200; stroke: #332200;}
+    rect.terminal         {fill: #FFC34D; stroke: #332200; stroke-width: 1;}
+    rect.nonterminal      {fill: #FFDF9E; stroke: #332200; stroke-width: 1;}
+    rect.text             {fill: none; stroke: none;}
+    polygon.regexp        {fill: #FFECC7; stroke: #332200; stroke-width: 1;}
+  </style>
+   </defs>
+   <polygon points="9 51 1 47 1 55"/>
+   <polygon points="17 51 9 47 9 55"/>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+      xlink:href="#parse_opt"
+      xlink:title="parse_opt">
+      <rect x="31" y="37" width="84" height="32"/>
+      <rect x="29" y="35" width="84" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="39" y="55">parse_opt</text>
+   </a>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+      xlink:href="#init_config"
+      xlink:title="init_config">
+      <rect x="135" y="37" width="84" height="32"/>
+      <rect x="133" y="35" width="84" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="143" y="55">init_config</text>
+   </a>
+   <a xmlns:xlink="http://www.w3.org/1999/xlink"
+      xlink:href="#proc_ddns_rec"
+      xlink:title="proc_ddns_rec">
+      <rect x="259" y="3" width="114" height="32"/>
+      <rect x="257" y="1" width="114" height="32" class="nonterminal"/>
+      <text class="nonterminal" x="267" y="21">proc_ddns_rec</text>
+   </a>
+   <path class="line"
+         d="m17 51 h2 m0 0 h10 m84 0 h10 m0 0 h10 m84 0 h10 m20 0 h10 m0 0 h124 m-154 0 l20 0 m-1 0 q-9 0 -9 -10 l0 -14 q0 -10 10 -10 m134 34 l20 0 m-20 0 q10 0 10 -10 l0 -14 q0 -10 -10 -10 m-134 0 h10 m114 0 h10 m23 34 h-3"/>
+   <polygon points="411 51 419 47 419 55"/>
+   <polygon points="411 51 403 47 403 55"/>
+</svg>
