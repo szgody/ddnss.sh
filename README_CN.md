@@ -37,7 +37,7 @@ opkg install curl openssl-util
 
 ## 复制源代码和设置
 ```
-git clone https://github.com/qingzi-zhang/ddns-shell
+git clone https://github.com/qingzi-zhang/ddns.sh
 ddnss_home="${HOME}/.ddnss.sh"
 mkdir -p "${ddnss_home}"
 mkdir -p -m 0700 "/var/log/ddnss/"
