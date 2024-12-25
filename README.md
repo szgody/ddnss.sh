@@ -48,18 +48,23 @@ echo 'alias ddnss.sh="'${ddnss_home}/ddnss.sh'"' > "${ddnss_home}/ddnss.sh.env"
 source "${ddnss_home}/ddnss.sh.env"
 ```
 > [!NOTE]
-> Optional - Add to profile: _`source $HOME/.ddnss.sh/ddnss.sh.env`_
+> Optional
+>- Add to profile: `source $HOME/.ddnss.sh/ddnss.sh.env`
+>- Create a symbolic link `ln -s $HOME/.ddnss.sh/ddnss.sh /usr/bin/ddnss.sh` to use it
 
 # Configuration
 Edit the DDNS configuration in the file: **`$HOME/.ddnss.sh/ddnss.conf`**
 > [!NOTE]
-> Optional - Log_File: The log file should be located in the /var/log/ directory and have write permissions
+> Optional
+>- DNS_Server: The DNS server to use for lookup a DDNS record
+>- Log_File: The log file should be located in the /var/log/ directory and have write permissions
+- DNS_Server=`8.8.8.8`
 - Log_File=`/var/log/ddnss/ddnss.log`
 - Tencent_SecretId=`AKIDz8krbsJ5yKBZQpn74WFkmLPx3*******`
 - Tencent_SecretKey=`Gu5t9xGARNpq86cd98joQYCN3*******`
 > [!TIP]
 > Format: `DDNS=domain fullname,ip_version,interface,eui64_suffix`
-- DDNS=`ai.ddns-shell.com,IPv6,br-lan,07e2:00c:0012:aaaa`
+- DDNS=`ai.ddns-shell.net,IPv6,br-lan,07e2:00c:0012:aaaa`
 
 # Usage
 ```
