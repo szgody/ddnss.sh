@@ -19,7 +19,7 @@
 #
 # DNSPod API v3 documentation at https://cloud.tencent.com/document/api/1427
 
-AGENT="A DDNS Shell script/v24.12.0-rc1 (404919@qq.com)"
+AGENT="A DDNS Shell script/v24.12.0-rc2 (404919@qq.com)"
 TAG="ddns-shell"
 
 if ! command -v curl >/dev/null 2>&1 ; then
@@ -38,6 +38,7 @@ LOG_SIZE=1000000 # Bytes
 
 _DIR="${HOME}/.ddnss.sh"
 DEFAULT_CFG_FILE="${_DIR}/ddnss.conf"
+DEFAULT_DNS_SERVER="8.8.8.8"
 DEFAULT_LOG_FILE="/var/log/ddnss/ddnss.log"
 DEFAULT_LOG_LEVEL="${LOG_LEVEL_ERROR}"
 
@@ -157,7 +158,7 @@ get_ip_interface() {
 # Function to get the IP address of a dynamic DNS via 'nslookup' command
 get_ip_nslookup() {
   # Retrieve DNS records via nslookup
-  response="$(nslookup -type="${record_type}" "${domain_full_name}")"
+  response="$(nslookup -type="${record_type}" "${domain_full_name}" "${dns_server}")"
 
   # Check for error indicator in the result
   if echo "${response}" | grep -q "\*\*" ; then
@@ -177,15 +178,17 @@ get_ip_nslookup() {
   fi
 }
 
-tc3_hmac_sha256() {
-  printf -- "%b" "$1" | openssl dgst -sha256 -mac hmac -macopt hexkey:"$2" | awk '{print $2}'
-}
-
-tc3_sha256() {
-  printf -- "%b" "$1" | openssl sha256 -hex | awk '{print $2}'
-}
-
 tc3_signature() {
+  # Function to calculate the openssl HMAC-SHA256 hash of a string with a secret key
+  tc3_hmac_sha256() {
+    printf -- "%b" "$1" | openssl dgst -sha256 -mac hmac -macopt hexkey:"$2" | awk '{print $2}'
+  }
+
+  # Function to calculate the openssl SHA256 hash of a string
+  tc3_sha256() {
+    printf -- "%b" "$1" | openssl sha256 -hex | awk '{print $2}'
+  }
+
   # Concatenate the canonical request string
   canonical_uri="/"
   canonical_querystring=""
@@ -225,7 +228,7 @@ tc3_api_req() {
   date="$(date -u -d "@$timestamp" +%Y-%m-%d 2>/dev/null)"
   http_request_method="POST"
   tc3_signature
-  log_to_file "SYN" "$action" "${payload}"
+  log_to_file "REQ" "$action" "{\"Request\":${payload}}"
   response=$(curl -A "{$AGENT}" \
     -X "${http_request_method}" "https://${host}" \
     -d "${payload}" \
@@ -417,7 +420,7 @@ init_config() {
   # Usage: get_config <value> by <key>
   # Config format: key=value
   get_config() {
-    grep "$1" "${config_file}" | cut -d '=' -f 2 | sed 's/"//g; s/\s//g'
+    awk -F '=' -v key="$1" 'tolower($1) == tolower(key) {print $2}' "${config_file}" | sed 's/"//g; s/\s//g'
   }
 
   secret_id="$(get_config Tencent_SecretId)"
@@ -427,6 +430,10 @@ init_config() {
     logger -p err -s -t "${TAG}" "DNSPod API credentials fields 'Tencent_SecretId' or 'Tencent_SecretKey' are missing in '${config_file}'"
     return 1
   fi
+
+  # Set dns server as default for lookup a DDNS record if not specified in the config file
+  dns_server="$(get_config DNS_Server)"
+  dns_server="${dns_server:-"${DEFAULT_DNS_SERVER}"}"
 
   log_file="$(get_config Log_File)"
   if [ -z "${log_file}" ]; then
@@ -443,8 +450,8 @@ init_config() {
   [ -w "${log_file}" ] && return 0
 
   # Attempt to create the log file if it does not exist
-  mkdir -p -m 0700 "$(dirname "${log_file}")"
   umask 0077
+  mkdir -p "$(dirname "${log_file}")"
   touch "${log_file}.bak" >/dev/null 2>&1
   touch "${log_file}" >/dev/null 2>&1
 
