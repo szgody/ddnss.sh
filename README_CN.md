@@ -48,21 +48,24 @@ echo 'alias ddnss.sh="'${ddnss_home}/ddnss.sh'"' > "${ddnss_home}/ddnss.sh.env"
 source "${ddnss_home}/ddnss.sh.env"
 ```
 > [!NOTE]
-> 可选项 - 环境变量加到 .profile 中，不用每次运行时加载: _`source $HOME/.ddnss.sh/ddnss.sh.env`_
->
-> 或创建一个软链接 `ln -s $HOME/.ddnss.sh/ddnss.sh /usr/bin/ddnss.sh` 以便于使用
+> 可选项
+>- 环境变量加到 .profile 中，不用每次运行时加载: `source $HOME/.ddnss.sh/ddnss.sh.env`
+>- 创建一个软链接 `ln -s $HOME/.ddnss.sh/ddnss.sh /usr/bin/ddnss.sh` 可供快速调用
 
 # 配置参数
 默认配置在: **`$HOME/.ddnss.sh/ddnss.conf`**，根据需要进行调整
 > [!NOTE]
-> Optional - Log_File: 日志文件应放在目录 /var/log/ 或子目录中，并且至少对ddnss.log和ddnss.log.bak文件具有写入的权限
+> 可选项
+>- DNS_Server: 设置用于查找DDNS记录的DNS服务器
+>- Log_File: 日志文件应放在目录 /var/log/ 或子目录中，并且至少对ddnss.log和ddnss.log.bak文件具有写入的权限
+- DNS_Server=`8.8.8.8`
 - Log_File=`/var/log/ddnss/ddnss.log`
 > 安全认证的id和key，从腾讯云获取
 - Tencent_SecretId=`AKIDz8krbsJ5yKBZQpn74WFkmLPx3*******`
 - Tencent_SecretKey=`Gu5t9xGARNpq86cd98joQYCN3*******`
 > [!TIP]
-> 格式为: `DDNS=domain fullname,ip_version,interface,eui64_suffix`
-- DDNS=`ai.ddns-shell.com,IPv6,br-lan,07e2:00c:0012:aaaa`
+> 格式为: `DDNS=完整域名,IP版本,网卡名,eui64后缀`
+- DDNS=`ai.ddns-shell.net,IPv6,br-lan,07e2:00c:0012:aaaa`
 
 # 使用方法为执行脚本：ddnss.sh
 ```
