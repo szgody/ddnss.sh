@@ -3,7 +3,7 @@
 #           A DDNS Shell script
 # https://github.com/qingzi-zhang/ddnss.sh
 #
-# Copyright 2024-2025 Ken <qingzi dot zhang at outlook dot com>
+# Copyright (c) 2024 Ken <qingzi dot zhang at outlook dot com>
 #
 # Licensed under the Apache License, Version 2.0 (the "License");
 # you may not use this file except in compliance with the License.
@@ -19,7 +19,7 @@
 #
 # DNSPod API v3 documentation at https://cloud.tencent.com/document/api/1427
 
-AGENT="A DDNS Shell script/v24.12.0-rc2 (404919@qq.com)"
+AGENT="A DDNS Shell script/v24.12.0-rc3 (404919@qq.com)"
 TAG="ddns-shell"
 
 if ! command -v curl >/dev/null 2>&1 ; then
@@ -152,6 +152,11 @@ get_ip_interface() {
   # Adds specific IPv6 EUI-64 suffix if defined
   if [ -n "${eui64_suffix}" ] && echo "${ip_address}" | grep -q "::" ; then
     ip_address="${ip_address%::*}:${eui64_suffix}"
+  fi
+  # Validate IP address length
+  if [ ${#ip_address} -gt 39 ]; then
+    logger -p err -s -t "${TAG}" "${domain_full_name} interface '${interface}' ${ip_version} address '${ip_address}' exceeds the length limit"
+    return 1
   fi
 }
 
