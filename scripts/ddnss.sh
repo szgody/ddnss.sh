@@ -95,7 +95,7 @@ get_ip_interface() {
     # https://www.iana.org/assignments/iana-ipv4-special-registry/iana-ipv4-special-registry.xhtml
 
     # [RFC791] "This network" 0.0.0.0/8
-    ip4_filter="^0\.(25[0-5]|2[0-4][0-9]|[01]?[0-9]{1,2}\.)"
+    ip4_filter="^0\."
     # [RFC1122] "This host on this network" 127.0.0.0/8
     ip4_filter="${ip4_filter}|^127\."
     # [RFC6598] Shared Address Space 100.64.0.0/10
@@ -124,17 +124,20 @@ get_ip_interface() {
     ip6_filter="^::$"
     # [RFC4291] Loopback Address ::1/128
     ip6_filter="${ip6_filter}|^::1$"
+    # [RFC4193][RFC8190] Unique-Local fc00::/7
+    ip6_filter="${ip6_filter}|^[fF][cdCD][0-9a-fA-F]{2}:"
+    # [RFC4291] Link-Local Unicast fe80::/10
+    ip6_filter="${ip6_filter}|^[fF][eE][8-9a-bA-B][0-9a-fA-F]:"
+
+    # An imprecise simplified algorithm is used here for performance reasons
+    # It may not handle all edge cases but is sufficient for the majority of scenarios
+    # [RFC5180][RFC Errata 1752] Benchmarking 2001:2::/48
+    ip6_filter="${ip6_filter}|^2001:2:"
     # [RFC6052] IPv4-IPv6 Translat 64:ff9b::/96
     # [RFC8215] IPv4-IPv6 Translat 64:ff9b:1::/48
     ip6_filter="${ip6_filter}|^64:[fF][fF]9[bB]:"
     # [RFC6666] Discard-Only Address Block 100::/64
     ip6_filter="${ip6_filter}|^100::"
-    # [RFC5180][RFC Errata 1752] Benchmarking 2001:2::/48
-    ip6_filter="${ip6_filter}|^2001:2:"
-    # [RFC4193][RFC8190] Unique-Local fc00::/7
-    ip6_filter="${ip6_filter}|^[fF][cdCD][0-9a-fA-F]{2}:"
-    # [RFC4291] Link-Local Unicast fe80::/10
-    ip6_filter="${ip6_filter}|^[fF][eE][8-9a-bA-B][0-9a-fA-F]:"
 
     # Extract and filter IPv6 address from the specific interface
     ip_address="$(ip -6 address show dev "${interface}" \
