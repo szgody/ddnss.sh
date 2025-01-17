@@ -287,8 +287,6 @@ handle_record() {
     return 0
   }
 
-  get_ip_nslookup || return 1
-
   if [ "${ip_address}" = "${ns_ip_address}" ]; then
     if [ "${log_level}" -eq "${LOG_LEVEL_VERBOSE}" ]; then
       logger -p info -s -t "${TAG}" "${domain_full_name} ${ip_version} address ${ip_address} is up to date"
