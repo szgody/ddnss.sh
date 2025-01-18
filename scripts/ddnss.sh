@@ -19,7 +19,7 @@
 #
 # DNSPod API v3 documentation at https://cloud.tencent.com/document/api/1427
 
-AGENT="A DDNS Shell script/v24.12.0-rc3 (404919@qq.com)"
+AGENT="A DDNS Shell script/v24.12.0-rc5 (404919@qq.com)"
 TAG="ddns-shell"
 
 if ! command -v curl >/dev/null 2>&1 ; then
