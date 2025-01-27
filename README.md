@@ -12,8 +12,9 @@
   </a>
 </p>
 
-- A dynamic DNS via DNSPod client written purely in shell (Unix shell) language.
-- Bourne Again Shell, Dropbear SSH, Bourne Shell and POSIX compatible.
+- A dynamic DNS client, written purely in Unix shell language.
+- Bourne Again Shell, Dropbear SSH, Bourne Shell (POSIX compatible).
+- Extendable via DNS API and easy to maintain.
 - Simple and very easy to use.
 
 ## Supported DDNS Services
@@ -35,36 +36,31 @@ opkg update
 opkg install curl openssl-util
 ```
 
-## Clone & Setup
+## Install from git
 ```
-git clone https://github.com/qingzi-zhang/ddns.sh
-ddnss_home="${HOME}/.ddnss.sh"
-mkdir -p "${ddnss_home}"
-mkdir -p -m 0700 "/var/log/ddnss/"
-cp ddnss.sh/config/ddnss.conf "${ddnss_home}/ddnss.conf"
-cp ddnss.sh/scripts/ddnss.sh "${ddnss_home}"
-chmod 0700 "${ddnss_home}/ddnss.sh"
-echo 'alias ddnss.sh="'${ddnss_home}/ddnss.sh'"' > "${ddnss_home}/ddnss.sh.env"
-source "${ddnss_home}/ddnss.sh.env"
+git clone https://github.com/qingzi-zhang/ddnss.sh.git
+cd ./ddnss.sh
+sudo sh ddnss.sh --install
 ```
-> [!NOTE]
-> Optional
->- Add to profile: `source $HOME/.ddnss.sh/ddnss.sh.env`
->- Create a symbolic link `ln -s $HOME/.ddnss.sh/ddnss.sh /usr/bin/ddnss.sh` to use it
 
 # Configuration
 Edit the DDNS configuration in the file: **`$HOME/.ddnss.sh/ddnss.conf`**
 > [!NOTE]
 > Optional
 >- DNS_Server: The DNS server to use for lookup a DDNS record
->- Log_File: The log file should be located in the /var/log/ directory and have write permissions
-- DNS_Server=`8.8.8.8`
-- Log_File=`/var/log/ddnss/ddnss.log`
-- Tencent_SecretId=`AKIDz8krbsJ5yKBZQpn74WFkmLPx3*******`
-- Tencent_SecretKey=`Gu5t9xGARNpq86cd98joQYCN3*******`
+>- Log_Path: The log path should be located in the /var/log/ directory and have write permissions
+
+```
+DNS_Server=8.8.8.8
+Log_Path=/var/log/ddnss
+```
+
 > [!TIP]
-> Format: `DDNS=domain fullname,ip_version,interface,eui64_suffix`
-- DDNS=`ai.ddns-shell.net,IPv6,br-lan,07e2:00c:0012:aaaa`
+> - Format of DDNS record: DDNS=domain_fullname,ip_version,interface,update_script_name,API_SecretID,API_SecretKey,eui64_suffix(only for IPv6)
+>
+```
+DDNS=ddns.shell-script.net,IPv6,br-lan,update_dnspod_v3.sh,***Replace_API_SecretID_pair***,***Replace_API_SecretKey_pair***,07e2:00cb:0012:aaaa
+```
 
 # Usage
 ```
@@ -73,15 +69,16 @@ Usage:
 
 Options:
   -h, --help           Print this help message
-  --config=<file>      Read config from a file
+  --config=<file>      Read config from a specific file
   --force-update       Proceed with the update regardless of IP status
+  --install            Install the DDNS shell script to the system
   --log-level=<0|1>    Set the log level to 0 or 1 (0: Error, 1: Verbose)
 ```
 
 # A DDNS Shell script
 ## Mini flowchart
 ![diagram](svg/Main.svg)
-## Configuration flowchart
+## Main flowchart
 ![diagram](svg/parse_opt.svg)
 ## Process records flowchart
 ![diagram](svg/proc_ddns_rec.svg)
