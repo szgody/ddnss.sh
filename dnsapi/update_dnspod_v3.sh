@@ -5,7 +5,6 @@
 # API v3 documentation at https://cloud.tencent.com/document/api/1427
 #
 # This script is called by ddnss.sh inside handle_record() function
-#
 # https://github.com/qingzi-zhang/ddnss.sh
 
 algorithm="TC3-HMAC-SHA256"
@@ -40,27 +39,27 @@ tc3_api_req() {
     -H "X-TC-Action: ${action}" \
     -H "X-TC-Timestamp: ${timestamp}" \
     -H "X-TC-Version: ${version}")
-  # X-TC-Region: Common Params. This parameter is not required for this API. (optional)
   # -H "X-TC-Region: $region"
+  #     X-TC-Region: Common Params. This parameter is not required for this API. (optional)
   log_to_file "ACK" "$action" "${response}"
   return $?
 }
 
-# Function to create a new DDNS record if it does not exist (DNSPod API: CreateRecord)
+# Function to prepare payload for creating a DNS record via DNSPod API
 tc3_insert_record() {
   action="CreateRecord"
   payload="$(printf -- '{"Domain":"%s","SubDomain":"%s","RecordType":"%s","RecordLine":"%s","Value":"%s"}' \
     "${domain}" "${subdomain}" "${record_type}" "${record_line}" "${ip_address}")"
 }
 
-# Function to get the record information (DNSPod API: DescribeRecordList)
+# Function to prepare payload for querying a DNS record via DNSPod API
 tc3_query_record() {
   action="DescribeRecordList"
   payload="$(printf -- '{"Domain":"%s","Subdomain":"%s","RecordType":"%s"}' \
     "${domain}" "${subdomain}" "${record_type}")"
 }
 
-# Calculates the OpenSSL HMAC-SHA256 hash of a string with a secret key and generates an authorization header for a TC3-signed request.
+# Calculates the OpenSSL HMAC-SHA256 hash of a string with a secret key and generates an authorization header for a TC3-signed request
 tc3_signature() {
   # Function to calculate the openssl HMAC-SHA256 hash of a string with a secret key
   tc3_hmac_sha256() {
@@ -95,7 +94,7 @@ tc3_signature() {
   authorization="$algorithm Credential=${secret_id}/${credential_scope}, SignedHeaders=${signed_headers}, Signature=${signature}"
 }
 
-# Function to update the IP address for a DDNS record (DNSPod API: ModifyDynamicDNS)
+# Function to prepare payload for updating a DNS record via DNSPod API
 tc3_update_record() {
   action="ModifyDynamicDNS"
   payload="$(printf -- '{"Domain":"%s","RecordId":%d,"RecordLine":"%s","Value":"%s","SubDomain":"%s"}' \
@@ -103,7 +102,7 @@ tc3_update_record() {
 }
 
 main() {
-  # Insert the new DDNS record (DNSPod API: CreateRecord)
+  # Attempt to insert a new DNS record
   if [ "$1" = "insert" ]; then
     tc3_insert_record
     tc3_api_req
@@ -112,7 +111,7 @@ main() {
     return 0
   fi
 
-  # Get the DDNS record information (DNSPod API: DescribeRecordList)
+  # Get the DDNS record information
   tc3_query_record
   tc3_api_req
   tc3_api_err || return 1
@@ -133,7 +132,7 @@ main() {
     [ "$force_update" -eq 1 ] || return 0
   fi
 
-  # Update the DDNS record IP address (DNSPod API: ModifyDynamicDNS)
+  # Update the DDNS record IP address
   tc3_update_record
   tc3_api_req
   tc3_api_err || 1
