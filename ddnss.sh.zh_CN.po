@@ -1,0 +1,147 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ddnss.sh\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-04-01 00:00+0800\n"
+"PO-Revision-Date: 2024-04-01 00:00+0800\n"
+"Last-Translator: Ken <qingzi dot zhang at outlook dot com>\n"
+"Language-Team: Chinese\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "DNS_Server"
+msgstr "DNS服务器地址"
+
+msgid "Log_File"
+msgstr "日志文件路径"
+
+msgid "Tencent_SecretId"
+msgstr "腾讯云API密钥ID"
+
+msgid "Tencent_SecretKey"
+msgstr "腾讯云API密钥"
+
+msgid "DDNS"
+msgstr "动态DNS记录配置"
+
+msgid "Format Description:"
+msgstr "配置格式说明:"
+
+msgid "DDNS=domain_fullname,ip_version,interface_name,eui64_suffix"
+msgstr "DDNS=域名全称,IP版本,网络接口名称,EUI64后缀"
+
+msgid "The script requires cURL support. Please install it."
+msgstr "脚本需要cURL支持。请安装它。"
+
+msgid "The script requires openssl-util support. Please install it."
+msgstr "脚本需要openssl-util支持。请安装它。"
+
+msgid "Critical Error"
+msgstr "严重错误"
+
+msgid "The Log file '%s' unexpectedly missing after init_config"
+msgstr "初始化配置后日志文件'%s'意外丢失"
+
+msgid "Error"
+msgstr "错误"
+
+msgid "Missing one or more required arguments."
+msgstr "缺少一个或多个必需的参数。"
+
+msgid "Verbose"
+msgstr "详细"
+
+msgid "Error"
+msgstr "错误"
+
+msgid "Invalid configuration file '%s'"
+msgstr "无效的配置文件'%s'"
+
+msgid "No DDNS records in '%s'"
+msgstr "'%s'中没有DDNS记录"
+
+msgid "Invalid log level '%s', Use 0 (Error) or 1 (Verbose)."
+msgstr "无效的日志级别'%s'，请使用0（错误）或1（详细）。"
+
+msgid "DNSPod API credentials fields 'Tencent_SecretId' or 'Tencent_SecretKey' are missing in '%s'"
+msgstr "'%s'中缺少DNSPod API凭证字段'Tencent_SecretId'或'Tencent_SecretKey'"
+
+msgid "Missing 'Log_File' field in '%s', using default '%s'"
+msgstr "'%s'中缺少'Log_File'字段，使用默认值'%s'"
+
+msgid "The log file '%s' is either a directory or not within '/var/log/'"
+msgstr "日志文件'%s'要么是一个目录，要么不在'/var/log/'中"
+
+msgid "Failed to create the log file '%s'"
+msgstr "创建日志文件'%s'失败"
+
+msgid "The log backup file '%s' is not writable"
+msgstr "日志备份文件'%s'不可写"
+
+msgid "The log file '%s' was successfully created"
+msgstr "日志文件'%s'已成功创建"
+
+msgid "Processing with force update is enabled"
+msgstr "已启用强制更新"
+
+msgid "Usage:"
+msgstr "用法:"
+
+msgid "Print this help message"
+msgstr "打印此帮助信息"
+
+msgid "Read config from a file"
+msgstr "从文件读取配置"
+
+msgid "Proceed with the update regardless of IP status"
+msgstr "无论IP状态如何，继续更新"
+
+msgid "Set the log level to 0 or 1 (0: Error, 1: Verbose)"
+msgstr "设置日志级别为0（错误）或1（详细）"
+
+msgid "Unknown option: %s"
+msgstr "未知选项: %s"
+
+msgid "Empty domain name in 'DDNS=%s'"
+msgstr "'DDNS=%s'中域名为空"
+
+msgid "interface '%s' is invalid not available"
+msgstr "接口'%s'无效或不可用"
+
+msgid "Invalid domain name '%s'"
+msgstr "无效的域名'%s'"
+
+msgid "Invalid domain '%s'"
+msgstr "无效的域名'%s'"
+
+msgid "Invalid IP version '%s' of %s"
+msgstr "%s的无效IP版本'%s'"
+
+msgid "interface '%s' ${ip_version} address extraction failed or address blocks reserved"
+msgstr "接口'%s' ${ip_version}地址提取失败或地址块被保留"
+
+msgid "interface '%s' ${ip_version} address '${ip_address}' exceeds the length limit"
+msgstr "接口'%s' ${ip_version}地址'${ip_address}'超出长度限制"
+
+msgid "%s ${record_type} [nslookup]: %s"
+msgstr "%s ${record_type} [nslookup]: %s"
+
+msgid "%s ${record_type} [nslookup]: IP address extraction failed"
+msgstr "%s ${record_type} [nslookup]: IP地址提取失败"
+
+msgid "%s ${record_type} [${action}]: %s, %s"
+msgstr "%s ${record_type} [${action}]: %s, %s"
+
+msgid "%s ${ip_version} ${ip_address} [CreateRecord] successfully"
+msgstr "%s ${ip_version} ${ip_address} [CreateRecord] 成功"
+
+msgid "%s ${ip_version} address ${ip_address} is up to date"
+msgstr "%s ${ip_version} 地址 ${ip_address} 已更新"
+
+msgid "%s cache of ${ip_version} address ${ip_address} is up to date"
+msgstr "%s ${ip_version} 地址 ${ip_address} 缓存已更新"
+
+msgid "%s ${ip_version} address has been updated to ${ip_address}"
+msgstr "%s ${ip_version} 地址已更新为 ${ip_address}"

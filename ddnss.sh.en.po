@@ -1,0 +1,147 @@
+msgid ""
+msgstr ""
+"Project-Id-Version: ddnss.sh\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2024-04-01 00:00+0800\n"
+"PO-Revision-Date: 2024-04-01 00:00+0800\n"
+"Last-Translator: Ken <qingzi dot zhang at outlook dot com>\n"
+"Language-Team: English\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n != 1);\n"
+
+msgid "DNS_Server"
+msgstr "DNS Server Address"
+
+msgid "Log_File"
+msgstr "Log File Path"
+
+msgid "Tencent_SecretId"
+msgstr "Tencent Cloud API Secret ID"
+
+msgid "Tencent_SecretKey"
+msgstr "Tencent Cloud API Secret Key"
+
+msgid "DDNS"
+msgstr "Dynamic DNS Record Configurations"
+
+msgid "Format Description:"
+msgstr "Format Description:"
+
+msgid "DDNS=domain_fullname,ip_version,interface_name,eui64_suffix"
+msgstr "DDNS=domain_fullname,ip_version,interface_name,eui64_suffix"
+
+msgid "The script requires cURL support. Please install it."
+msgstr "The script requires cURL support. Please install it."
+
+msgid "The script requires openssl-util support. Please install it."
+msgstr "The script requires openssl-util support. Please install it."
+
+msgid "Critical Error"
+msgstr "Critical Error"
+
+msgid "The Log file '%s' unexpectedly missing after init_config"
+msgstr "The Log file '%s' unexpectedly missing after init_config"
+
+msgid "Error"
+msgstr "Error"
+
+msgid "Missing one or more required arguments."
+msgstr "Missing one or more required arguments."
+
+msgid "Verbose"
+msgstr "Verbose"
+
+msgid "Error"
+msgstr "Error"
+
+msgid "Invalid configuration file '%s'"
+msgstr "Invalid configuration file '%s'"
+
+msgid "No DDNS records in '%s'"
+msgstr "No DDNS records in '%s'"
+
+msgid "Invalid log level '%s', Use 0 (Error) or 1 (Verbose)."
+msgstr "Invalid log level '%s', Use 0 (Error) or 1 (Verbose)."
+
+msgid "DNSPod API credentials fields 'Tencent_SecretId' or 'Tencent_SecretKey' are missing in '%s'"
+msgstr "DNSPod API credentials fields 'Tencent_SecretId' or 'Tencent_SecretKey' are missing in '%s'"
+
+msgid "Missing 'Log_File' field in '%s', using default '%s'"
+msgstr "Missing 'Log_File' field in '%s', using default '%s'"
+
+msgid "The log file '%s' is either a directory or not within '/var/log/'"
+msgstr "The log file '%s' is either a directory or not within '/var/log/'"
+
+msgid "Failed to create the log file '%s'"
+msgstr "Failed to create the log file '%s'"
+
+msgid "The log backup file '%s' is not writable"
+msgstr "The log backup file '%s' is not writable"
+
+msgid "The log file '%s' was successfully created"
+msgstr "The log file '%s' was successfully created"
+
+msgid "Processing with force update is enabled"
+msgstr "Processing with force update is enabled"
+
+msgid "Usage:"
+msgstr "Usage:"
+
+msgid "Print this help message"
+msgstr "Print this help message"
+
+msgid "Read config from a file"
+msgstr "Read config from a file"
+
+msgid "Proceed with the update regardless of IP status"
+msgstr "Proceed with the update regardless of IP status"
+
+msgid "Set the log level to 0 or 1 (0: Error, 1: Verbose)"
+msgstr "Set the log level to 0 or 1 (0: Error, 1: Verbose)"
+
+msgid "Unknown option: %s"
+msgstr "Unknown option: %s"
+
+msgid "Empty domain name in 'DDNS=%s'"
+msgstr "Empty domain name in 'DDNS=%s'"
+
+msgid "interface '%s' is invalid not available"
+msgstr "interface '%s' is invalid not available"
+
+msgid "Invalid domain name '%s'"
+msgstr "Invalid domain name '%s'"
+
+msgid "Invalid domain '%s'"
+msgstr "Invalid domain '%s'"
+
+msgid "Invalid IP version '%s' of %s"
+msgstr "Invalid IP version '%s' of %s"
+
+msgid "interface '%s' ${ip_version} address extraction failed or address blocks reserved"
+msgstr "interface '%s' ${ip_version} address extraction failed or address blocks reserved"
+
+msgid "interface '%s' ${ip_version} address '${ip_address}' exceeds the length limit"
+msgstr "interface '%s' ${ip_version} address '${ip_address}' exceeds the length limit"
+
+msgid "%s ${record_type} [nslookup]: %s"
+msgstr "%s ${record_type} [nslookup]: %s"
+
+msgid "%s ${record_type} [nslookup]: IP address extraction failed"
+msgstr "%s ${record_type} [nslookup]: IP address extraction failed"
+
+msgid "%s ${record_type} [${action}]: %s, %s"
+msgstr "%s ${record_type} [${action}]: %s, %s"
+
+msgid "%s ${ip_version} ${ip_address} [CreateRecord] successfully"
+msgstr "%s ${ip_version} ${ip_address} [CreateRecord] successfully"
+
+msgid "%s ${ip_version} address ${ip_address} is up to date"
+msgstr "%s ${ip_version} address ${ip_address} is up to date"
+
+msgid "%s cache of ${ip_version} address ${ip_address} is up to date"
+msgstr "%s cache of ${ip_version} address ${ip_address} is up to date"
+
+msgid "%s ${ip_version} address has been updated to ${ip_address}"
+msgstr "%s ${ip_version} address has been updated to ${ip_address}"

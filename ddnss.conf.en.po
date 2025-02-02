@@ -1,0 +1,20 @@
+msgid "DNS_Server"
+msgstr "DNS Server Address"
+
+msgid "Log_File"
+msgstr "Log File Path"
+
+msgid "Tencent_SecretId"
+msgstr "Tencent Cloud API Secret ID"
+
+msgid "Tencent_SecretKey"
+msgstr "Tencent Cloud API Secret Key"
+
+msgid "DDNS"
+msgstr "Dynamic DNS Record Configurations"
+
+msgid "Format Description:"
+msgstr "Format Description:"
+
+msgid "DDNS=domain_fullname,ip_version,interface_name,eui64_suffix"
+msgstr "DDNS=domain_fullname,ip_version,interface_name,eui64_suffix"

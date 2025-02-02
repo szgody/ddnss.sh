@@ -1,0 +1,20 @@
+msgid "DNS_Server"
+msgstr "DNS服务器地址"
+
+msgid "Log_File"
+msgstr "日志文件路径"
+
+msgid "Tencent_SecretId"
+msgstr "腾讯云API密钥ID"
+
+msgid "Tencent_SecretKey"
+msgstr "腾讯云API密钥"
+
+msgid "DDNS"
+msgstr "动态DNS记录配置"
+
+msgid "Format Description:"
+msgstr "配置格式说明:"
+
+msgid "DDNS=domain_fullname,ip_version,interface_name,eui64_suffix"
+msgstr "DDNS=域名全称,IP版本,网络接口名称,EUI64后缀"
