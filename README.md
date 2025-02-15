@@ -13,7 +13,7 @@
 </p>
 
 - A dynamic DNS client, written purely in Unix shell language.
-- Bourne Again Shell, Dropbear SSH, Bourne Shell (POSIX compatible).
+- Bourne Again Shell, Dropbear, Bourne Shell (POSIX compatible).
 - Extendable via DNS API and easy to maintain.
 - Simple and very easy to use.
 
