@@ -13,7 +13,7 @@
 </p>
 
 - 纯 Shell script 语言编写的动态域名客户端
-- 兼容 POSIX 标准 ，已测试通过 bash, dropbear ssh 和 sh
+- 兼容 POSIX 标准 ，已测试通过 bash, dropbear 和 sh
 - 支持多种动态域名服务，易于扩展和维护
 - 主程序的代码和配置一共不到 30 KB，对运行环境的要求非常低且易于使用
 
