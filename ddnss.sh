@@ -207,7 +207,7 @@ init_config() {
 }
 
 install() {
-  echo "Installing to ${_HOME}/"
+  echo "Installing to ${_HOME} ..."
   if [ "$(uname -s)" != "Linux" ]; then
     echo "This script is intended to run on Linux only."
     return 1
@@ -250,11 +250,39 @@ install() {
   echo "Copying files to current system"
   cp "${ENTRY}" "${_HOME}/" >/dev/null 2>&1
   chmod +x "${_HOME}/${ENTRY}" >/dev/null 2>&1
-  [ -f "${_HOME}/config/ddnss.conf" ] || cp config/ddnss.conf "${_HOME}/config/" >/dev/null 2>&1
+
+  if [ -f "${_HOME}/config/ddnss.conf" ]; then
+    cp config/ddnss.conf "${_HOME}/config/ddnss.default-conf" >/dev/null 2>&1
+    echo "The config file '${_HOME}/config/ddnss.conf' exists, The new config file has been copied to '${_HOME}/config/ddnss.default-conf'"
+  else
+    cp config/ddnss.conf "${_HOME}/config/" >/dev/null 2>&1
+  fi
+
   cp dnsapi/*.sh "${DNSAPI_PATH}/" >/dev/null 2>&1
   echo "Changing files ownership to the current user: $(id)"
   chown -R "${uid}:${gid}" "${_HOME}" "${log_path}"
-  echo "Installation complete, modify the configuration file '${_HOME}/config/ddnss.conf' to suit your needs."
+
+  sha256sum_info="$(grep 'ddnss.sh' sha256sum | cut -d ' ' -f 1)"
+  file_checksums="$(sha256sum "${_HOME}/${ENTRY}" | cut -d ' ' -f 1)"
+  [ "${sha256sum_info}" = "${file_checksums}" ] || {
+    echo "Error: The SHA256 checksum of the file '${_HOME}/${ENTRY}' mismatch the expected value."
+    rm -f "${_HOME}/${ENTRY}"
+    echo "Installation failed, removed the invalid file '${_HOME}/${ENTRY}'"
+    return 1
+  }
+
+  for api_file in "${DNSAPI_PATH}/"*.sh; do
+    sha256sum_info="$(grep "$(basename "${api_file}")" sha256sum | cut -d ' ' -f 1)"
+    file_checksums="$(sha256sum "${api_file}" | cut -d ' ' -f 1)"
+    [ "${sha256sum_info}" = "${file_checksums}" ] || {
+      echo "Error: The SHA256 checksum of the file '${api_file}' mismatch the expected value."
+      rm -f "${api_file}"
+      echo "Installation failed, removed the invalid file '${api_file}'"
+      continue
+    }
+  done
+
+  echo "Installation accomplished, Please modify the configuration file '${_HOME}/config/ddnss.conf' to suit your domain name."
 }
 
 log_to_file() {
@@ -315,7 +343,7 @@ parse_opt() {
         ;;
       --install)
         install
-        return 1
+        exit $?
         ;;
       --log-level=*)
         log_level="${1#*=}"
@@ -421,7 +449,7 @@ proc_ddns_rec() {
 
     # Validate the API credentials
     if [ -z "${secret_id}" ] || [ -z "${secret_key}" ]; then
-      logger -p error -s -t "${TAG}" "API credentials fields 'SecretId' or 'SecretKey' are missing in '${config_file}'."
+      logger -p err -s -t "${TAG}" "API credentials fields 'SecretId' or 'SecretKey' are missing in '${config_file}'."
       return 1
     fi
 
