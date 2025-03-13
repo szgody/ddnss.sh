@@ -459,15 +459,33 @@ proc_ddns_rec() {
 }
 
 show_help() {
-  echo "Usage:
+  echo "
+DDNSS.sh - A Dynamic DNS Shell Script
+=====================================
+Automatically update dynamic DNS records based on your network interface IP address.
+https://github.com/qingzi-zhang/ddnss.sh
+
+Usage:
   $(basename "$0") [options]
 
 Options:
   -h, --help           Print this help message
-  --config=<file>      Read config from a file
+  --config=<file>      Read config from a file (default: ${DEFAULT_CFG_FILE})
   --force-update       Proceed with the update regardless of IP status
-  --install            Install the DDNS shell script to your system
-  --log-level=<0|1>    Set the log level to 0 or 1 (0: Error, 1: Verbose)"
+  --install            Install the DDNS shell script to your system (${_HOME})
+  --log-level=<0|1>    Set the log level to 0 or 1 (0: Error, 1: Verbose)
+
+Configuration Format:
+  DDNS=domain.example.com,IPv6,interface,dnsapi.sh,secret_id,secret_key,eui64_suffix
+  DNS_Server=8.8.8.8
+
+Examples:
+  ${ENTRY} --install                   # Install the script to your system
+  ${ENTRY} --config=/path/to/config    # Use a custom configuration file
+  ${ENTRY} --force-update              # Force update the DNS records
+  ${ENTRY} --log-level=1               # Enable verbose logging
+
+For more information, visit: https://github.com/qingzi-zhang/ddnss.sh"
 }
 
 main() {
